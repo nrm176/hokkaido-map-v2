@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hokkaido_map">
+<head>
+    <meta charset="UTF-8">
+    <title>ILOVE北海道</title>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/topojson/topojson.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/queue-async/queue.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mapStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
+</head>
+<body>
+
+
+<div class="container-fluid" ng-controller="MapCtrl">
+    <div class="row">
+        <!-- Table View -->
+        <div class="col-md-2">
+            <h1>Table View</h1>
+            <div class="table-responsive">
+                <input type="text" ng-model="cityName">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>City</th>
+                        <th>Population</th>
+                        <th>%change</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="d in dataSet|filter:cityName" ng-mouseover="rowClicked(d.city)" ng-mouseleave="rowLeft(d.city)">
+                        <td>{{d.city}}</td>
+                        <td>{{d.population}}</td>
+                        <td>{{d.delta}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- Map View -->
+        <div class="col-md-10">
+            <div view-directive></div>
+            <div id="tooltip" class="hidden"></div>
+            <div id="map"></div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="lib/map-angular_v2.js"></script>
+<script>
+    function setMaxHeight(){
+        var h = $(window).height()*0.8+"px";
+        console.log(h);
+        $("div.table-responsive").css('max-height',h);
+
+    }
+    setMaxHeight();
+</script>
+
+</body>
+</html>
