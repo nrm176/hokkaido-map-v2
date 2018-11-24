@@ -6,3 +6,7 @@ To see the app, after you clone the repo simply do
 bower install
 ```
 and open index.html in Browser through WebStorm.
+
+after opening a browser, you should see the following.
+
+![Sample](https://github.com/nrm176/hokkaido-map-v2/blob/master/image/sample.png?raw=true)
